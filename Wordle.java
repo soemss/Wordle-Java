@@ -16,9 +16,10 @@ public class Wordle {
     }
 
     public static void game() {
-        String word = wordList.get(random.nextInt(wordList.size()));
+        // String word = wordList.get(random.nextInt(wordList.size()));
+        String word = "hasty";
         for (int i = 0; i < 6; i++) {
-            System.out.print("\033\143");
+            // System.out.print("\033\143");
             System.out.println(word);
             System.out.println("Guess the word: ");
             for (int j = 0; j < guesses.size(); j++) {
@@ -31,7 +32,7 @@ public class Wordle {
             }
             compareWords(word, wordGuess);
             if (word.equals(wordGuess)) {
-                System.out.print("\033\143");
+                // System.out.print("\033\143");
                 for (int j = 0; j < guesses.size(); j++) {
                     System.out.println(guesses.get(j));
                 }
@@ -41,8 +42,8 @@ public class Wordle {
     }
 
     public static String compareWords(String word, String wordGuess) {
-        ArrayList<Character> letters = new ArrayList<>(5);
         String guess = "";
+        ArrayList<Character> letters = new ArrayList<>(5);
         for (int i = 0; i < word.length(); i++) {
             letters.add(word.charAt(i));
         }
@@ -54,11 +55,16 @@ public class Wordle {
                 } else {
                     guess = guess + ANSI_YELLOW + wordGuess.charAt(i) + ANSI_RESET;
                 }
-                letters.remove(Character.valueOf(wordGuess.charAt(i)));
             } else {
                 guess = guess + wordGuess.charAt(i);
             }
+            letters.remove(Character.valueOf(wordGuess.charAt(i)));
+            for (Character value : letters) {
+                System.out.print(value);
+            }
+            System.out.println();
         }
+
         guesses.add(guess);
         return guess;
 
