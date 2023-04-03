@@ -18,21 +18,23 @@ public class Wordle {
     public static void game() {
         // String word = wordList.get(random.nextInt(wordList.size()));
         String word = "hasty";
+
         for (int i = 0; i < 6; i++) {
-            // System.out.print("\033\143");
+            System.out.print("\033\143");
             System.out.println(word);
             System.out.println("Guess the word: ");
+
             for (int j = 0; j < guesses.size(); j++) {
                 System.out.println(guesses.get(j));
             }
             String wordGuess = input.nextLine();
             if (!wordList.contains(wordGuess)) {
-                System.out.println("Invalid word");
+                i--;
                 continue;
             }
             compareWords(word, wordGuess);
             if (word.equals(wordGuess)) {
-                // System.out.print("\033\143");
+                System.out.print("\033\143");
                 for (int j = 0; j < guesses.size(); j++) {
                     System.out.println(guesses.get(j));
                 }
@@ -52,19 +54,20 @@ public class Wordle {
             if (letters.contains(wordGuess.charAt(i))) {
                 if (word.charAt(i) == wordGuess.charAt(i)) {
                     guess = guess + ANSI_GREEN + wordGuess.charAt(i) + ANSI_RESET;
+                    letters.remove(Character.valueOf(wordGuess.charAt(i)));
                 } else {
                     guess = guess + ANSI_YELLOW + wordGuess.charAt(i) + ANSI_RESET;
                 }
             } else {
                 guess = guess + wordGuess.charAt(i);
             }
-            letters.remove(Character.valueOf(wordGuess.charAt(i)));
-            for (Character value : letters) {
-                System.out.print(value);
-            }
+
+            // for (Character value : letters) {
+            // System.out.print(value);
+            // }
+            // System.out.println(letters);
             System.out.println();
         }
-
         guesses.add(guess);
         return guess;
 
