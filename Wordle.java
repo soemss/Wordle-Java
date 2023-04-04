@@ -56,7 +56,17 @@ public class Wordle {
                     guess = guess + ANSI_GREEN + wordGuess.charAt(i) + ANSI_RESET;
                     letters.remove(Character.valueOf(wordGuess.charAt(i)));
                 } else {
-                    guess = guess + ANSI_YELLOW + wordGuess.charAt(i) + ANSI_RESET;
+                    int count = 0;
+                    for (int j = 0; j < word.length(); j++) {
+                        if (word.charAt(i) == word.charAt(j)) {
+                            count++;
+                        }
+                    }
+                    if (count == 2) {
+                        guess = guess + ANSI_YELLOW + wordGuess.charAt(i) + ANSI_RESET;
+                    } else {
+                        guess = guess + wordGuess.charAt(i);
+                    }
                 }
             } else {
                 guess = guess + wordGuess.charAt(i);
