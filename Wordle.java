@@ -17,10 +17,10 @@ public class Wordle {
 
     public static void game() {
         // String word = wordList.get(random.nextInt(wordList.size()));
-        String word = "trout";
+        String word = "urges";
 
         for (int i = 0; i < 6; i++) {
-            // System.out.print("\033\143");
+            System.out.print("\033\143");
             System.out.println(word);
             System.out.println("Guess the word: ");
 
@@ -38,6 +38,8 @@ public class Wordle {
                 for (int j = 0; j < guesses.size(); j++) {
                     System.out.println(guesses.get(j));
                 }
+
+                System.out.println("It took you " + (i + 1) + " guesses!");
                 return;
             }
         }
@@ -56,26 +58,12 @@ public class Wordle {
                     guess = guess + ANSI_GREEN + wordGuess.charAt(i) + ANSI_RESET;
                     letters.remove(Character.valueOf(wordGuess.charAt(i)));
                 } else {
-                    ArrayList<Integer> count = new ArrayList<>();
-                    for (int j = 0; j < word.length(); j++) {
-                        if (word.charAt(j) == wordGuess.charAt(i)) {
-                            count.add(j);
-                        }
-                    }
-                    // if (count > 1) {
-                    //     guess = guess + ANSI_YELLOW + wordGuess.charAt(i) + ANSI_RESET;
-                    // } else {
-                    //     guess = guess + wordGuess.charAt(i);
-                    // }
+                    guess = guess + ANSI_YELLOW + wordGuess.charAt(i) + ANSI_RESET;
                 }
             } else {
                 guess = guess + wordGuess.charAt(i);
             }
 
-            // for (Character value : letters) {
-            // System.out.print(value);
-            // }
-            // System.out.println(letters);
             System.out.println();
         }
         guesses.add(guess);
@@ -83,31 +71,3 @@ public class Wordle {
 
     }
 }
-// for (int i = 0; i < word.length(); i++) {
-//     if (letters.contains(wordGuess.charAt(i))) {
-//         if (word.charAt(i) == wordGuess.charAt(i)) {
-//             guess = guess + ANSI_GREEN + wordGuess.charAt(i) + ANSI_RESET;
-//             letters.remove(Character.valueOf(wordGuess.charAt(i)));
-//         } else {
-//             int count = 0;
-//             for (int j = 0; j < word.length(); j++) {
-//                 if (word.charAt(i) == wordGuess.charAt(j)) {
-//                     count++;
-//                 }
-//             }
-//             if (count > 1) {
-//                 guess = guess + ANSI_YELLOW + wordGuess.charAt(i) + ANSI_RESET;
-//             } else {
-//                 guess = guess + wordGuess.charAt(i);
-//             }
-//         }
-//     } else {
-//         guess = guess + wordGuess.charAt(i);
-//     }
-
-//     // for (Character value : letters) {
-//     // System.out.print(value);
-//     // }
-//     // System.out.println(letters);
-//     System.out.println();
-// }
