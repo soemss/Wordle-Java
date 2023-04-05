@@ -16,8 +16,8 @@ public class Wordle {
     }
 
     public static void game() {
-        // String word = wordList.get(random.nextInt(wordList.size()));
-        String word = "urges";
+        String word = wordList.get(random.nextInt(wordList.size()));
+        // String word = "urges";
 
         for (int i = 0; i < 6; i++) {
             System.out.print("\033\143");
@@ -38,8 +38,7 @@ public class Wordle {
                 for (int j = 0; j < guesses.size(); j++) {
                     System.out.println(guesses.get(j));
                 }
-
-                System.out.println("It took you " + (i + 1) + " guesses!");
+                System.out.println("Congratulations! It took you " + (i + 1) + " guesses!");
                 return;
             }
         }
